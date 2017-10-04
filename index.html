@@ -3,34 +3,219 @@
     <head>
         <title></title>
         <meta charset="utf-8" />
+        <script type="text/javascript" src="helpers.js"></script>
+        <script type="text/javascript" src="agua.js"></script>
     </head>
     <body>
         <table><tbody>
             <tr>
-                <th>Faixa</th>
-                <th>Valor</th>
+                <td>Consumo (m3)</td>
+                <td><input name="consumo" type="number" value="10" min="0" /></td>
+
+                <td>Mínimo Água</td>
+                <td><input name="consumo_minimo_agua" type="number" value="10" min="0"/></td>
+
+                <td>Mínimo Esgoto</td>
+                <td><input name="consumo_minimo_esgoto" type="number" value="16" min="0"/></td>
             </tr>
             <tr>
-                <td>0-10</td>
-                <td><input name="zero_a_dez" type="text" value=""/></td>
-            </tr>
-            <tr>
-                <td>11-15</td>
-                <td><input name="onze_a_quinze" type="text" value=""/></td>
-            </tr>
-            <tr>
-                <td>20-50</td>
-                <td><input name="vinte_a_cinquenta" type="text" value=""/></td>
-            </tr>
-            <tr>
-                <td>50+</td>
-                <td><input name="mais_que_cinquenta" type="text" value=""/></td>
+                <td>Taxa de contingência: </td>
+                <td>
+                    <label class="switch">
+                        <input name="usar_meta" type="checkbox" checked>
+                    </label>
+                </td>
+                <td id="meta_value_label">Meta:</td>
+                <td><input name="meta_value" type="number" value="10" min="0" disabled /></td>
             </tr>
         </tbody>
         </table>
-        <p>Valor da conta: <input name="" type="text" value="haha"/></p>
+        <table><tbody>
+            <tr>
+                <th>Faixa</th>
+                <th>Água (m3)</th>
+                <th>Água (R$)</th>
+                <th>Esgoto (m3)</th>
+                <th>Esgoto (R$)</th>
+            </tr>
+            <tr>
+                <td>0-10</td>
+                <td><input name="faixa-0-10_agua_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-0-10_agua_reais" type="text" value="" disabled/></td>
+                <td><input name="faixa-0-10_esgoto_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-0-10_esgoto_reais" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>11-15</td>
+                <td><input name="faixa-11-15_agua_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-11-15_agua_reais" type="text" value="" disabled/></td>
+                <td><input name="faixa-11-15_esgoto_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-11-15_esgoto_reais" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>16-20</td>
+                <td><input name="faixa-16-20_agua_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-16-20_agua_reais" type="text" value="" disabled/></td>
+                <td><input name="faixa-16-20_esgoto_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-16-20_esgoto_reais" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>21-50</td>
+                <td><input name="faixa-21-50_agua_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-21-50_agua_reais" type="text" value="" disabled/></td>
+                <td><input name="faixa-21-50_esgoto_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-21-50_esgoto_reais" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>50+</td>
+                <td><input name="faixa-50+_agua_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-50+_agua_reais" type="text" value="" disabled/></td>
+                <td><input name="faixa-50+_esgoto_m3" type="text" value="" disabled/></td>
+                <td><input name="faixa-50+_esgoto_reais" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>Soma</td>
+                <td><input name="agua_m3_total" type="text" value="" disabled/></td>
+                <td><input name="agua_reais_total" type="text" value="" disabled/></td>
+                <td><input name="esgoto_m3_total" type="text" value="" disabled/></td>
+                <td><input name="esgoto_reais_total" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>Soma*181</td>
+                <td><input name="agua_m3_total_181" type="text" value="" disabled/></td>
+                <td><input name="agua_reais_total_181" type="text" value="" disabled/></td>
+                <td><input name="esgoto_m3_total_181" type="text" value="" disabled/></td>
+                <td><input name="esgoto_reais_total_181" type="text" value="" disabled/></td>
+            </tr>
+        </tbody>
+        </table>
+
+        <br/>
+        <table><tbody>
+            <tr>
+                <td>Conta Individual:</td>
+                <td><input name="valor_da_conta" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>Contingência Individual:</td>
+                <td><input name="contingencia" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>Conta Total com extra:</td>
+                <td><input name="valor_da_conta_com_contingencia" type="text" value="" disabled/></td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td>Conta Cezanne:</td>
+                <td><input name="valor_da_conta_181" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>Contingência Cezanne:</td>
+                <td><input name="contingencia_181" type="text" value="" disabled/></td>
+            </tr>
+            <tr>
+                <td>Conta Cezanne com extra:</td>
+                <td><input name="valor_da_conta_com_contingencia_181" type="text" value="" disabled/></td>
+            </tr>
+        </tbody></table>
 
         <script>
+         function setElementValue(name, value) {
+             document.getElementsByName(name)[0].value = value;
+         }
+
+         function setaValoresComputados(nomes, arrayValores) {
+             for(let i = 0; i < nomes.length; i++) {
+                 setElementValue(nomes[i], arrayValores[i]);
+             }
+         }
+
+         function onUsarMetaCheckboxChange() {
+             if(this.checked) {
+                 /* document.getElementsByName("meta_value")[0].disabled = false;*/
+                 document.getElementsByName("meta_value")[0].style.visibility = 'visible';
+                 document.getElementById("meta_value_label").style.visibility = 'visible';
+             }
+             else {
+                 /* document.getElementsByName("meta_value")[0].disabled = true;*/
+                 document.getElementsByName("meta_value")[0].style.visibility = 'hidden';
+                 document.getElementById("meta_value_label").style.visibility = 'hidden';
+             }
+             onConsumoChange();
+         }
+
+         function onConsumoChange() {
+             let consumo = parseInt(document.getElementsByName("consumo")[0].value);
+
+             let consumo_minimo_agua = parseInt(document.getElementsByName("consumo_minimo_agua")[0].value);
+             let consumo_minimo_esgoto = parseInt(document.getElementsByName("consumo_minimo_esgoto")[0].value);;
+
+             let numFaixas = 5;
+             let nome_faixas = ["faixa-0-10", "faixa-11-15", "faixa-16-20", "faixa-21-50", "faixa-50+"];
+
+             let faixas_agua = quebra_faixas(consumo, consumo_minimo_agua);
+             let faixas_esgoto = quebra_faixas(0.8*consumo, consumo_minimo_esgoto);
+
+             let custo_agua_em_faixas = calcula_custo_agua_por_faixa(consumo, consumo_minimo_agua);
+             let custo_esgoto_em_faixas = calcula_custo_esgoto_por_faixa(consumo, consumo_minimo_esgoto);
+
+             // xxxxxxxxxx Contingência xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+             let contingencia_somada = 0;
+             if (document.getElementsByName("usar_meta")[0].checked) {
+                 let meta = parseInt(document.getElementsByName("meta_value")[0].value);
+                 let custo_agua_contingencia_em_faixas = calcula_custo_agua_excedente_por_faixa(consumo, consumo_minimo_agua, meta);
+                 contingencia_somada = somaArray(custo_agua_contingencia_em_faixas);
+                 if (contingencia_somada < 0) contingencia_somada = 0;
+                 document.getElementsByName("contingencia")[0].value = emReais(contingencia_somada);
+                 document.getElementsByName("contingencia_181")[0].value = emReais(181 * contingencia_somada);
+             }
+             else {
+                 document.getElementsByName("contingencia")[0].value = emReais(0);
+                 document.getElementsByName("contingencia_181")[0].value = emReais(0);
+             }
+             // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+             /* value.toLocaleString(undefined, {style:"decimal", minimumFractionDigits:2})*/
+
+             /* let a = document.getElementsByName("usar_meta")[0]*/
+
+             for(let i=0; i < numFaixas; i++) {
+                 setElementValue(nome_faixas[i]+"_agua_m3", faixas_agua[i]);
+                 setElementValue(nome_faixas[i]+"_agua_reais", emReais(custo_agua_em_faixas[i]));
+                 setElementValue(nome_faixas[i]+"_esgoto_m3", faixas_esgoto[i]);
+                 setElementValue(nome_faixas[i]+"_esgoto_reais", emReais(custo_esgoto_em_faixas[i]));
+             }
+
+             // Valor total da conta
+             let custo_agua_somado = somaArray(custo_agua_em_faixas);
+             let custo_esgoto_somado = somaArray(custo_esgoto_em_faixas);
+             let custo_agua_e_esgoto_somado = custo_agua_somado + custo_esgoto_somado
+             let custo_agua_com_contingencia_e_esgoto_somado = custo_agua_e_esgoto_somado + contingencia_somada
+             setElementValue("agua_m3_total", somaArray(faixas_agua));
+             setElementValue("agua_reais_total", emReais(custo_agua_somado));
+             setElementValue("esgoto_m3_total", somaArray(faixas_esgoto));
+             setElementValue("esgoto_reais_total", emReais(custo_esgoto_somado));
+
+             setElementValue("agua_m3_total_181", 181*somaArray(faixas_agua));
+             setElementValue("agua_reais_total_181", emReais(181*custo_agua_somado));
+             setElementValue("esgoto_m3_total_181", 181*somaArray(faixas_esgoto));
+             setElementValue("esgoto_reais_total_181", emReais(181*custo_esgoto_somado));
+
+             setElementValue("valor_da_conta", emReais(custo_agua_e_esgoto_somado));
+             setElementValue("valor_da_conta_com_contingencia", emReais(custo_agua_com_contingencia_e_esgoto_somado));
+             setElementValue("valor_da_conta_181", emReais(custo_agua_e_esgoto_somado*181));
+             setElementValue("valor_da_conta_com_contingencia_181", emReais(custo_agua_com_contingencia_e_esgoto_somado*181));
+         }
+
+         document.getElementsByName("consumo")[0].addEventListener('change', onConsumoChange);
+         document.getElementsByName("consumo_minimo_agua")[0].addEventListener('change', onConsumoChange);
+         document.getElementsByName("consumo_minimo_esgoto")[0].addEventListener('change', onConsumoChange);
+         document.getElementsByName("usar_meta")[0].addEventListener('change', onUsarMetaCheckboxChange);
+         document.getElementsByName("meta_value")[0].addEventListener('change', onConsumoChange);
+
+         onConsumoChange();
         </script>
 
     </body>
