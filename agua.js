@@ -52,6 +52,13 @@ function calcula_custo_agua_por_faixa(consumo, consumo_minimo_agua) {
 }
 
 
+function calcula_consumo_contingencia_por_faixa(consumo, consumo_minimo_agua, meta) {
+    let faixas = quebra_faixas(consumo, consumo_minimo_agua);
+    let faixas_meta = quebra_faixas(meta, consumo_minimo_agua);
+    return subtraiArrays(faixas, faixas_meta);
+}
+
+
 /**
  * Calcula a taxa de contingência a ser paga.
  *
@@ -62,17 +69,14 @@ function calcula_custo_agua_por_faixa(consumo, consumo_minimo_agua) {
  * @return Valor da taxa de contingência separado por faixa de consumo.
  */
 function calcula_custo_agua_excedente_por_faixa(consumo, consumo_minimo_agua, meta) {
-    let contingencia_por_faixas;
-    if (consumo < meta) {
-        contingencia_por_faixas = Array(5).fill(0);
+    let precos_agua_com_contingencia = precos_agua.slice();
+    for(let i=0; i < precos_agua_com_contingencia.length; i++){
+        precos_agua_com_contingencia[i] = roundToTwoDecimals(1.2 * precos_agua_com_contingencia[i]);
     }
-    let faixas = quebra_faixas(consumo, consumo_minimo_agua);
-    let faixas_meta = quebra_faixas(meta, consumo_minimo_agua);
-    let faixas_contingencia = subtraiArrays(faixas, faixas_meta);
-    contingencia_por_faixas = multiplicaArrays(faixas_contingencia, precos_agua);
-    for(let i=0; i < 5; i++) {
-        contingencia_por_faixas[i] *= 1.2;
-    }
+
+    let faixas_contingencia = calcula_consumo_contingencia_por_faixa(consumo, consumo_minimo_agua, meta);
+    let contingencia_por_faixas = multiplicaArrays(faixas_contingencia, precos_agua_com_contingencia);
+
     return contingencia_por_faixas;
 }
 

@@ -1,6 +1,12 @@
 
 "use strict";
 
+
+function roundToTwoDecimals(number) {
+    return Math.floor(100* number) / 100;
+}
+
+
 /**
  * Soma os elementos de um array.
  *
