@@ -55,7 +55,12 @@ function calcula_custo_agua_por_faixa(consumo, consumo_minimo_agua) {
 function calcula_consumo_contingencia_por_faixa(consumo, consumo_minimo_agua, meta) {
     let faixas = quebra_faixas(consumo, consumo_minimo_agua);
     let faixas_meta = quebra_faixas(meta, consumo_minimo_agua);
-    return subtraiArrays(faixas, faixas_meta);
+    let consumo_contingencia_por_faixa = subtraiArrays(faixas, faixas_meta);
+    for(let i = 0; i < consumo_contingencia_por_faixa.length; i++) {
+        if(consumo_contingencia_por_faixa[i] < 0)
+            consumo_contingencia_por_faixa[i] = 0;
+    }
+    return consumo_contingencia_por_faixa;
 }
 
 

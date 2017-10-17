@@ -5,11 +5,32 @@
         <meta charset="utf-8" />
         <script type="text/javascript" src="helpers.js"></script>
         <script type="text/javascript" src="agua.js"></script>
+        <script type="text/javascript" src="bower_components/chart.js/dist/Chart.min.js"></script>
+        <link rel="stylesheet"
+              href="bower_components/chartist/dist/chartist.min.css">
+
+        <script type="text/javascript" src="mychart.js"></script>
 
         <style>
          input {
              width:100px;
              text-align:right;
+         }
+
+         .wrapper {
+             display: grid;
+             grid-template-columns: 350px 100%;
+             grid-gap: 10px;
+             /* background-color: #fff;
+                color: #444; */
+         }
+
+         .box {
+             /* background-color: #444;
+                color: #fff; */
+             border-radius: 5px;
+             padding: 20px;
+             /*              font-size: 150%; */
          }
         </style>
     </head>
@@ -114,35 +135,47 @@
         </table>
 
         <br/>
-        <table><tbody>
-            <tr>
-                <td>Conta Individual:</td>
-                <td><input name="valor_da_conta" type="text" value="" disabled/></td>
-            </tr>
-            <tr>
-                <td>Contingência Individual:</td>
-                <td><input name="contingencia" type="text" value="" disabled/></td>
-            </tr>
-            <tr>
-                <td>Conta Total com extra:</td>
-                <td><input name="valor_da_conta_com_contingencia" type="text" value="" disabled/></td>
-            </tr>
-            <tr></tr>
-            <tr></tr>
-            <tr></tr>
-            <tr>
-                <td>Conta Cezanne:</td>
-                <td><input name="valor_da_conta_181" type="text" value="" disabled/></td>
-            </tr>
-            <tr>
-                <td>Contingência Cezanne:</td>
-                <td><input name="contingencia_181" type="text" value="" disabled/></td>
-            </tr>
-            <tr>
-                <td>Conta Cezanne com extra:</td>
-                <td><input name="valor_da_conta_com_contingencia_181" type="text" value="" disabled/></td>
-            </tr>
-        </tbody></table>
+
+        <div class="wrapper">
+            <div class="box">
+                <table><tbody>
+                    <tr>
+                        <td>Conta Individual:</td>
+                        <td><input name="valor_da_conta" type="text" value="" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Contingência Individual:</td>
+                        <td><input name="contingencia" type="text" value="" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Conta Total com extra:</td>
+                        <td><input name="valor_da_conta_com_contingencia" type="text" value="" disabled/></td>
+                    </tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr>
+                        <td>Conta Cezanne:</td>
+                        <td><input name="valor_da_conta_181" type="text" value="" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Contingência Cezanne:</td>
+                        <td><input name="contingencia_181" type="text" value="" disabled/></td>
+                    </tr>
+                    <tr>
+                        <td>Conta Cezanne com extra:</td>
+                        <td><input name="valor_da_conta_com_contingencia_181" type="text" value="" disabled/></td>
+                    </tr>
+                </tbody></table>
+            </div>
+
+            <div class="box">
+                <canvas id="myChartCanvas" width="400" height="300" style="border:1px solid">
+                <div id="myChart" class="ct-chart ct-perfect-fourth"></div>
+            </div>
+        </div>
+
+
 
         <script>
          function setElementValue(name, value) {
@@ -245,11 +278,28 @@
          document.getElementsByName("consumo")[0].addEventListener('change', onConsumoChange);
          document.getElementsByName("consumo_minimo_agua")[0].addEventListener('change', onConsumoChange);
          document.getElementsByName("consumo_minimo_esgoto")[0].addEventListener('change', onConsumoChange);
-         document.getElementsByName("usar_meta")[0].addEventListener('change', onUsarMetaCheckboxChange);
          document.getElementsByName("meta_value")[0].addEventListener('change', onConsumoChange);
+         document.getElementsByName("usar_meta")[0].addEventListener('change', onUsarMetaCheckboxChange);
 
          onConsumoChange();
         </script>
 
+
+        <!-- Chart Javascript -->
+        <script src="bower_components/chartist/dist/chartist.min.js"></script>
+        <!-- <script type="text/javascript">
+             function drawChartFromPage() {
+             let consumo_minimo_agua = parseInt(document.getElementsByName("consumo_minimo_agua")[0].value);
+             let consumo_minimo_esgoto = parseInt(document.getElementsByName("consumo_minimo_esgoto")[0].value);;
+             let meta = parseInt(document.getElementsByName("meta_value")[0].value);
+             drawChart(consumo_minimo_agua, consumo_minimo_esgoto, meta);
+             }
+
+             document.getElementsByName("consumo_minimo_agua")[0].addEventListener('change', drawChartFromPage);
+             document.getElementsByName("consumo_minimo_esgoto")[0].addEventListener('change', drawChartFromPage);
+             document.getElementsByName("meta_value")[0].addEventListener('change', drawChartFromPage);
+
+             drawChartFromPage();
+             </script> -->
     </body>
 </html>
