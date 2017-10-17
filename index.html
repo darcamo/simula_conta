@@ -170,7 +170,7 @@
             </div>
 
             <div class="box">
-                <canvas id="myChartCanvas" width="400" height="300" style="border:1px solid">
+                <canvas id="myChartCanvas" width="500" height="300" style="border:1px solid">
                 <div id="myChart" class="ct-chart ct-perfect-fourth"></div>
             </div>
         </div>
@@ -287,19 +287,19 @@
 
         <!-- Chart Javascript -->
         <script src="bower_components/chartist/dist/chartist.min.js"></script>
-        <!-- <script type="text/javascript">
-             function drawChartFromPage() {
+
+        <script>
+         function drawChartFromPage() {
              let consumo_minimo_agua = parseInt(document.getElementsByName("consumo_minimo_agua")[0].value);
              let consumo_minimo_esgoto = parseInt(document.getElementsByName("consumo_minimo_esgoto")[0].value);;
              let meta = parseInt(document.getElementsByName("meta_value")[0].value);
              drawChart(consumo_minimo_agua, consumo_minimo_esgoto, meta);
-             }
+         }
+         document.getElementsByName("consumo_minimo_agua")[0].addEventListener('change', drawChartFromPage);
+         document.getElementsByName("consumo_minimo_esgoto")[0].addEventListener('change', drawChartFromPage);
+         document.getElementsByName("meta_value")[0].addEventListener('change', drawChartFromPage);
 
-             document.getElementsByName("consumo_minimo_agua")[0].addEventListener('change', drawChartFromPage);
-             document.getElementsByName("consumo_minimo_esgoto")[0].addEventListener('change', drawChartFromPage);
-             document.getElementsByName("meta_value")[0].addEventListener('change', drawChartFromPage);
-
-             drawChartFromPage();
-             </script> -->
+         drawChartFromPage();
+        </script>
     </body>
 </html>
