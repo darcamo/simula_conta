@@ -1,5 +1,16 @@
+"use strict";
+
 function drawChart(minimoAgua, minimoEsgoto, meta) {
-    //
+    // Remove the the canvas in case there is already a chart there
+    document.getElementById("myChartCanvas").remove();
+
+    // Add a new canvas to the div container for our chart
+    var canvas = document.createElement("canvas");
+    canvas.id = "myChartCanvas";
+    canvas.width = 500;
+    canvas.height = 300;
+    document.getElementById("myChartContainer").appendChild(canvas);
+
     var ctx = document.getElementById("myChartCanvas").getContext('2d');
 
     let labels = [];
@@ -17,11 +28,15 @@ function drawChart(minimoAgua, minimoEsgoto, meta) {
     }
 
     var options = {
+        tooltips: {
+            mode: 'index'
+        },
         scales: {
             yAxes: [{
-                // ticks: {
-                //     beginAtZero:true
-                // },
+                position: 'left',
+                ticks: {
+                    beginAtZero:true
+                },
                 stacked: true
             }]
         },
@@ -61,4 +76,9 @@ function drawChart(minimoAgua, minimoEsgoto, meta) {
         },
         options: options
     });
+}
+
+
+function updateChart(myChart, minimoAgua, minimoEsgoto, meta) {
+
 }
