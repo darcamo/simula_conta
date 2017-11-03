@@ -1,8 +1,17 @@
 "use strict";
 
-var precos_agua = [3.16, 4.09, 4.43, 7.58, 13.39];
-var precos_esgoto = [3.49, 4.48, 4.85, 8.33, 14.72];
 
+
+// Preços cobrados até setembro de 2017
+var precos_agua_ate_set_2017 = [3.16, 4.09, 4.43, 7.58, 13.39];
+var precos_esgoto_ate_set_2017 = [3.49, 4.48, 4.85, 8.33, 14.72];
+
+// Preços cobrados a partir de outubro 2017
+var precos_agua_de_out_2017 = [3.29, 4.27, 4.62, 7.91, 13.97];
+var precos_esgoto_de_out_2017 = [3.61, 4.70, 5.06, 8.69, 15.36];
+
+var precos_agua = precos_agua_ate_set_2017;
+var precos_esgoto = precos_esgoto_ate_set_2017;
 
 /**
  * Quebra 'consumo' (em metros cúbicos) nas diversas faixas.
