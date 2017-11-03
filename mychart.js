@@ -28,8 +28,31 @@ function drawChart(minimoAgua, minimoEsgoto, meta) {
     }
 
     var options = {
+        title: {
+            display: true,
+            text: "Valor Em reais para diferentes consumos em m3"
+        },
         tooltips: {
-            mode: 'index'
+            mode: 'label',
+            callbacks: {
+                afterTitle: function() {
+                    window.total = 0;
+                },
+                label: function(tooltipItem, data) {
+                    var tipo = data.datasets[tooltipItem.datasetIndex].label;
+                    var valor = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+
+                    //THIS ONE:
+                    valor=parseFloat(valor);
+
+                    window.total += valor;
+                    return tipo + ": " + valor.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+                },
+                footer: function() {
+                    return "TOTAL: " + roundToTwoDecimals(window.total).toString();
+
+                }
+            }
         },
         scales: {
             yAxes: [{
