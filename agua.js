@@ -10,8 +10,21 @@ var precos_esgoto_ate_set_2017 = [3.49, 4.48, 4.85, 8.33, 14.72];
 var precos_agua_de_out_2017 = [3.29, 4.27, 4.62, 7.91, 13.97];
 var precos_esgoto_de_out_2017 = [3.61, 4.70, 5.06, 8.69, 15.36];
 
-var precos_agua = precos_agua_ate_set_2017;
-var precos_esgoto = precos_esgoto_ate_set_2017;
+var precos_agua_de_abril_2018 = [3.48, 4.51, 4.88, 8.36, 14.77];
+var precos_esgoto_de_abril_2018 = [3.85, 4.94, 5.35, 9.19, 16.24];
+
+var precos_agua = precos_agua_de_abril_2018;
+var precos_esgoto = precos_esgoto_de_abril_2018;
+
+
+
+// 0 a 10       3,48    3,85
+// 11 a 15      4,51    4,94
+// 16 a 20      4,88    5,35
+// 21 a 50      8,36    9,19
+//     > 50     14,77   16,24
+
+// R$ 16.202,16
 
 /**
  * Quebra 'consumo' (em metros cúbicos) nas diversas faixas.
