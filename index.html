@@ -37,7 +37,7 @@
     <body>
         <table><tbody>
             <tr>
-                <td>Consumo (m3)</td>
+                <td>Consumo Médio (m3)</td>
                 <td><input name="consumo" type="number" value="10" min="0" /></td>
 
                 <td>Mínimo Água</td>
@@ -55,6 +55,9 @@
                 </td>
                 <td id="meta_value_label">Meta:</td>
                 <td><input name="meta_value" type="number" value="10" min="0" /></td>
+
+                <td>N° Apartamentos</td>
+                <td><input name="numero_apartamentos" type="number" value="180" min="0", max="1000" title="Esse valor é acrescido de 1 para as áreas comuns" /></td>
             </tr>
         </tbody>
         </table>
@@ -114,7 +117,7 @@
                 <td><input name="faixa-50+_esgoto_reais" type="text" value="" disabled/></td>
             </tr>
             <tr>
-                <td>Soma</td>
+                <td>Soma Individual</td>
                 <td><input name="agua_m3_total" type="text" value="" disabled/></td>
                 <td><input name="agua_reais_total" type="text" value="" disabled/></td>
                 <td><input name="agua_cont_m3_total" disabled/></td>
@@ -123,13 +126,13 @@
                 <td><input name="esgoto_reais_total" type="text" value="" disabled/></td>
             </tr>
             <tr>
-                <td>Soma*181</td>
-                <td><input name="agua_m3_total_181" type="text" value="" disabled/></td>
-                <td><input name="agua_reais_total_181" type="text" value="" disabled/></td>
-                <td><input name="agua_cont_m3_total_181" disabled/></td>
-                <td><input name="agua_cont_reais_total_181" disabled/></td>
-                <td><input name="esgoto_m3_total_181" type="text" value="" disabled/></td>
-                <td><input name="esgoto_reais_total_181" type="text" value="" disabled/></td>
+                <td>Soma Condomínio</td>
+                <td><input name="agua_m3_total_condominio" type="text" value="" disabled/></td>
+                <td><input name="agua_reais_total_condominio" type="text" value="" disabled/></td>
+                <td><input name="agua_cont_m3_total_condominio" disabled/></td>
+                <td><input name="agua_cont_reais_total_condominio" disabled/></td>
+                <td><input name="esgoto_m3_total_condominio" type="text" value="" disabled/></td>
+                <td><input name="esgoto_reais_total_condominio" type="text" value="" disabled/></td>
             </tr>
         </tbody>
         </table>
@@ -155,16 +158,16 @@
                     <tr></tr>
                     <tr></tr>
                     <tr>
-                        <td>Conta Cezanne:</td>
-                        <td><input name="valor_da_conta_181" type="text" value="" disabled/></td>
+                        <td>Conta do Condomínio:</td>
+                        <td><input name="valor_da_conta_condominio" type="text" value="" disabled/></td>
                     </tr>
                     <tr>
-                        <td>Contingência Cezanne:</td>
-                        <td><input name="contingencia_181" type="text" value="" disabled/></td>
+                        <td>Contingência do Condomínio:</td>
+                        <td><input name="contingencia_condominio" type="text" value="" disabled/></td>
                     </tr>
                     <tr>
-                        <td>Conta Cezanne com extra:</td>
-                        <td><input name="valor_da_conta_com_contingencia_181" type="text" value="" disabled/></td>
+                        <td>Conta do Condomínio com extra:</td>
+                        <td><input name="valor_da_conta_com_contingencia_condominio" type="text" value="" disabled/></td>
                     </tr>
                 </tbody></table>
             </div>
@@ -207,6 +210,8 @@
              let consumo_minimo_agua = parseInt(document.getElementsByName("consumo_minimo_agua")[0].value);
              let consumo_minimo_esgoto = parseInt(document.getElementsByName("consumo_minimo_esgoto")[0].value);;
 
+             let numero_apartamentos = parseInt(document.getElementsByName("numero_apartamentos")[0].value) + 1;
+
              let numFaixas = 5;
              let nome_faixas = ["faixa-0-10", "faixa-11-15", "faixa-16-20", "faixa-21-50", "faixa-50+"];
 
@@ -228,13 +233,13 @@
                  custo_contingencia_somada = somaArray(custo_agua_contingencia_em_faixas);
                  if (custo_contingencia_somada < 0) custo_contingencia_somada = 0;
                  document.getElementsByName("contingencia")[0].value = emReais(custo_contingencia_somada);
-                 document.getElementsByName("contingencia_181")[0].value = emReais(181 * custo_contingencia_somada);
+                 document.getElementsByName("contingencia_condominio")[0].value = emReais(numero_apartamentos * custo_contingencia_somada);
              }
              else {
                  consumo_contingencia_em_faixas = Array(5).fill(0);
                  custo_agua_contingencia_em_faixas = Array(5).fill(0);
                  document.getElementsByName("contingencia")[0].value = emReais(0);
-                 document.getElementsByName("contingencia_181")[0].value = emReais(0);
+                 document.getElementsByName("contingencia_condominio")[0].value = emReais(0);
              }
              // xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
@@ -261,17 +266,17 @@
              setElementValue("esgoto_reais_total", emReais(custo_esgoto_somado));
 
 
-             setElementValue("agua_m3_total_181", 181*somaArray(faixas_agua));
-             setElementValue("agua_reais_total_181", emReais(181*custo_agua_somado));
-             setElementValue("agua_cont_m3_total_181", 181*somaArray(consumo_contingencia_em_faixas));
-             setElementValue("agua_cont_reais_total_181", emReais(181*custo_contingencia_somada));
-             setElementValue("esgoto_m3_total_181", 181*somaArray(faixas_esgoto));
-             setElementValue("esgoto_reais_total_181", emReais(181*custo_esgoto_somado));
+             setElementValue("agua_m3_total_condominio", numero_apartamentos*somaArray(faixas_agua));
+             setElementValue("agua_reais_total_condominio", emReais(numero_apartamentos*custo_agua_somado));
+             setElementValue("agua_cont_m3_total_condominio", numero_apartamentos*somaArray(consumo_contingencia_em_faixas));
+             setElementValue("agua_cont_reais_total_condominio", emReais(numero_apartamentos*custo_contingencia_somada));
+             setElementValue("esgoto_m3_total_condominio", numero_apartamentos*somaArray(faixas_esgoto));
+             setElementValue("esgoto_reais_total_condominio", emReais(numero_apartamentos*custo_esgoto_somado));
 
              setElementValue("valor_da_conta", emReais(custo_agua_e_esgoto_somado));
              setElementValue("valor_da_conta_com_contingencia", emReais(custo_agua_com_contingencia_e_esgoto_somado));
-             setElementValue("valor_da_conta_181", emReais(custo_agua_e_esgoto_somado*181));
-             setElementValue("valor_da_conta_com_contingencia_181", emReais(custo_agua_com_contingencia_e_esgoto_somado*181));
+             setElementValue("valor_da_conta_condominio", emReais(custo_agua_e_esgoto_somado*numero_apartamentos));
+             setElementValue("valor_da_conta_com_contingencia_condominio", emReais(custo_agua_com_contingencia_e_esgoto_somado*numero_apartamentos));
          }
 
          document.getElementsByName("consumo")[0].addEventListener('change', onConsumoChange);
@@ -279,6 +284,7 @@
          document.getElementsByName("consumo_minimo_esgoto")[0].addEventListener('change', onConsumoChange);
          document.getElementsByName("meta_value")[0].addEventListener('change', onConsumoChange);
          document.getElementsByName("usar_meta")[0].addEventListener('change', onUsarMetaCheckboxChange);
+         document.getElementsByName("numero_apartamentos")[0].addEventListener('change', onConsumoChange);
 
          onConsumoChange();
         </script>
