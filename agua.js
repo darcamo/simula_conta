@@ -13,8 +13,11 @@ var precos_esgoto_de_out_2017 = [3.61, 4.70, 5.06, 8.69, 15.36];
 var precos_agua_de_abril_2018 = [3.48, 4.51, 4.88, 8.36, 14.77];
 var precos_esgoto_de_abril_2018 = [3.85, 4.94, 5.35, 9.19, 16.24];
 
-var precos_agua = precos_agua_de_abril_2018;
-var precos_esgoto = precos_esgoto_de_abril_2018;
+var precos_agua_de_marco_2019 = [4.03, 5.23, 5.65, 9.69, 17.11];
+var precos_esgoto_de_marco_2019 = [4.46, 5.72, 6.20, 10.65, 18.82];
+
+var precos_agua = precos_agua_de_marco_2019;
+var precos_esgoto = precos_esgoto_de_marco_2019;
 
 
 
